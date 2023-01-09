@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v3
+
+      # Create a sample artifact
+      - run: mkdir -p path/to/artifact
+      - run: echo hello > path/to/artifact/world.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt
+
+  deploy:
+    strategy:
+      # Use matrix to create a combination of inputs.
+      # A workflow will run for each combination of inputs.
+      matrix:
+        # TODO: Can we enumerate environments configured in repo here instead of hard-coding?
+        environment: [ dev01, dev02, dev03, test, prod ] 
+
+    name: Deploy to ${{ matrix.environment }}
+    runs-on: [ ubuntu-latest ]
+    environment: ${{ matrix.environment }}
+    steps:
+      - run: echo "Deploying to environment ${{ matrix.environment }}"
+
+      # Do something to simualte a deployment to environment (${{ matrix.environment }})
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: ./dist
+      - run: cat ./dist/world.txt

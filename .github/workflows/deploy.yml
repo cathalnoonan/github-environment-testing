@@ -26,7 +26,7 @@ jobs:
           GITHUB_JSON: '${{ toJSON(github) }}'
           GITHUB_ENV: '${{ toJSON(env) }}'
           GITHUB_JOB: '${{ toJSON(job) }}'
-          GITHUB_JOBS: '${{ toJSON(jobs) }}'
+          #GITHUB_JOBS: '${{ toJSON(jobs) }}'
           GITHUB_STEPS: '${{ toJSON(steps) }}'
           GITHUB_RUNNER: '${{ toJSON(runner) }}'
           GITHUB_STRATEGY: '${{ toJSON(strategy) }}'

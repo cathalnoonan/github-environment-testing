@@ -20,6 +20,11 @@ jobs:
           name: my-artifact
           path: path/to/artifact/world.txt
 
+      # Debug info
+      - run: echo DEBUG_INFO
+        env:
+          - GITHUB_JSON: ${{ toJson(github) }}
+
   deploy:
     strategy:
       # Use matrix to create a combination of inputs.

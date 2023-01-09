@@ -23,7 +23,7 @@ jobs:
       # Debug info
       - run: echo DEBUG_INFO
         env:
-          - GITHUB_JSON: "${{ toJson(github) }}"
+          - GITHUB_JSON: '${{ toJSON(github) }}'
 
   deploy:
     strategy:

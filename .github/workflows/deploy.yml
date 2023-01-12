@@ -40,7 +40,7 @@ jobs:
       # A workflow will run for each combination of inputs.
       matrix:
         # TODO: Can we enumerate environments configured in repo here instead of hard-coding?
-        environment: [ dev01, dev02, dev03, test, prod ] 
+        environment: [ dev01, dev02, dev03, test ] 
 
     name: Deploy to ${{ matrix.environment }}
     runs-on: [ ubuntu-latest ]
